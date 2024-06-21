@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { datasource } from '../ormconfig';
 import { Item } from '../entity/Item';
+import { uploadImg } from '../utils/imageUploader';
 
 const itemRepository = datasource.getRepository(Item);
 
@@ -12,9 +13,10 @@ class ItemController {
 
 public createItem = async (req: RequestFiles, res: Response) => {
   try {
-    const newItem = itemRepository.create(req.body);
+    const {img} = req.files as any
+    const imageUrl = await uploadImg(img);
+    const newItem = itemRepository.create({...req.body,imageUrl});
     const savedItem = await itemRepository.save(newItem);
-    console.log(req.files)
     res.json(savedItem);
   } catch (error) {
     console.error('Error creating item:', error);
