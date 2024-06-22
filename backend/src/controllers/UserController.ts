@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { datasource } from '../ormconfig';
 import { User } from '../entity/User';
+import generateToken from '../utils/generateToken';
 
 const userRepository = datasource.getRepository(User);
 
@@ -60,6 +61,22 @@ public listUsers = async (req: Request, res: Response) => {
     const users = await userRepository.find();
     res.json(users);
   } catch (error) {
+    console.error('Error fetching users:', error);
+    res.status(500).send('Internal Server Error');
+  }
+ }
+
+ public async login(req: Request, res: Response) {
+  const { email, senha } = req.body;
+  try{
+    const usuarioEncontrado = await userRepository.findOne({ where: { email } });
+     if (!usuarioEncontrado || usuarioEncontrado.password !== senha) {
+      res.status(401).json({error:'login e senha incorretos'})
+    }
+    const token = generateToken({...usuarioEncontrado})
+    res.json({usuario: usuarioEncontrado, token})
+  }
+  catch (error) {
     console.error('Error fetching users:', error);
     res.status(500).send('Internal Server Error');
   }

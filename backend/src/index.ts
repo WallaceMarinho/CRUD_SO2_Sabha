@@ -1,8 +1,6 @@
 import 'reflect-metadata';
 import express from 'express';
 import { datasource } from './ormconfig';
-import userRoutes from './routes/UserRoutes';
-import itemRoutes from './routes/ItemRoutes';
 import routes from './routes';
 
 const app = express();
