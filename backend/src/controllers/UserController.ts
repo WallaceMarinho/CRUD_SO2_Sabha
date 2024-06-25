@@ -70,15 +70,17 @@ public listUsers = async (req: Request, res: Response) => {
   const { email, senha } = req.body;
   try{
     const usuarioEncontrado = await userRepository.findOne({ where: { email } });
+    console.log(usuarioEncontrado)
      if (!usuarioEncontrado || usuarioEncontrado.password !== senha) {
-      res.status(401).json({error:'login e senha incorretos'})
-    }
+      return res.status(401).json({error:'login e senha incorretos'})
+     }
     const token = generateToken({...usuarioEncontrado})
-    res.json({usuario: usuarioEncontrado, token})
+   return res.json({usuario: usuarioEncontrado, token})
   }
+
   catch (error) {
     console.error('Error fetching users:', error);
-    res.status(500).send('Internal Server Error');
+   return res.status(500).send('Internal Server Error');
   }
  }
 }; 
