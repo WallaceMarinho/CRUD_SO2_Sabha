@@ -8,7 +8,7 @@ const formDataMiddleware = parse();
 const itemRoutes = Router();
 
 itemRoutes.get('/items', tokenValidation.anyUserVerification, ItemController.listItems);
-itemRoutes.post('/items', tokenValidation.anyUserVerification,formDataMiddleware, ItemController.createItem);
+itemRoutes.post('/items', formDataMiddleware, tokenValidation.anyUserVerification, ItemController.createItem);
 itemRoutes.put('/items/:id', tokenValidation.anyUserVerification, ItemController.updateItem);
 itemRoutes.delete('/items/:id', tokenValidation.anyUserVerification, ItemController.deleteItem);
 

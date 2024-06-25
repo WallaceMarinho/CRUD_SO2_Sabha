@@ -14,6 +14,7 @@ class ItemController {
 public createItem = async (req: RequestFiles, res: Response) => {
   try {
     const {img} = req.files as any
+    console.log(req)
     const imageUrl = await uploadImg(img);
     const newItem = itemRepository.create({...req.body,imageUrl});
     const savedItem = await itemRepository.save(newItem);

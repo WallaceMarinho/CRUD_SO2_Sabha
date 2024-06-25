@@ -1,17 +1,17 @@
 // src/components/Home.tsx
 import React, { useEffect, useState } from 'react';
-import { getItems } from '../services/itemService';
-import { Item } from '../types/Item';
+import { ItemForm } from '../services/itemService'; 
+import ItemServices from '../services/itemService'; // Importa ItemServices corretamente
 import { useNavigate } from 'react-router-dom';
 import '../styles/Home.css'; // Import the CSS file
 
 const Home: React.FC = () => {
-    const [items, setItems] = useState<Item[]>([]);
+    const [items, setItems] = useState<ItemForm[]>([]);
     const navigate = useNavigate();
 
     async function fetchData() {
         try {
-            const items = await getItems();
+            const items = await ItemServices.getItems(); // Chama a função getItems
             setItems(items);
         } catch (error) {
             navigate('/login');
