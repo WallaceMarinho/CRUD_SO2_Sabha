@@ -12,11 +12,11 @@ datasource.initialize()
   .then(() => {
     console.log('Data Source has been initialized!');
 
-    // Usar as rotas
+    // Usar as rotas e configurações do CORS
     app.use(cors());
     app.use(routes);
     
-
+    // const para rodar os serviçoes  
     app.listen(3000, () => {
       console.log('Server is running on port 3000');
     });

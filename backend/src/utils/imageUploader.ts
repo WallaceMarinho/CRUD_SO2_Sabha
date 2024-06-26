@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import * as fs from 'fs';
 import * as dotenv from 'dotenv';
 
+// const para fazer o upload da imagem na api da Ingur
 dotenv.config();
 
 const uploadImg = async (img: any): Promise<string> => {
