@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import ItemServices from '../services/itemService'; // Importe o ItemServices
 import itemService, { ItemForm } from '../services/itemService';
 import { Category } from '../types/itemCategory';
+import { useNavigate } from 'react-router-dom';
 
 const AddItem: React.FC = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [salePrice, setSalePrice] = useState('');
@@ -48,6 +50,7 @@ const AddItem: React.FC = () => {
       setMinimumStock('');
       setStockLocation('');
       setGeneralInfo('');
+      navigate ('/')
     } catch (error) {
       console.error('Erro ao adicionar item:', error);
       // Lógica para tratamento de erro, se necessário
@@ -62,9 +65,6 @@ const AddItem: React.FC = () => {
     }
   };
 
-  const uploadImage = async (formData: FormData): Promise<void> => {
-    
-  };
 
   return (
     <div>

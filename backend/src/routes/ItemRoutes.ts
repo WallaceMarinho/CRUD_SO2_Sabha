@@ -9,7 +9,8 @@ const itemRoutes = Router();
 
 itemRoutes.get('/items', tokenValidation.anyUserVerification, ItemController.listItems);
 itemRoutes.post('/items', formDataMiddleware, tokenValidation.anyUserVerification, ItemController.createItem);
-itemRoutes.put('/items/:id', tokenValidation.anyUserVerification, ItemController.updateItem);
+itemRoutes.put('/items/:id', formDataMiddleware, tokenValidation.anyUserVerification, ItemController.updateItem);
 itemRoutes.delete('/items/:id', tokenValidation.anyUserVerification, ItemController.deleteItem);
+itemRoutes.get('/items/:id', tokenValidation.anyUserVerification, ItemController.getByID);
 
 export default itemRoutes;

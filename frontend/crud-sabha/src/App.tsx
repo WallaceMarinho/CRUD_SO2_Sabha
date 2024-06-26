@@ -6,6 +6,7 @@ import AddItem from './components/AddItem';
 import AddUser from './components/AddUser';
 import Users from './components/Users';
 import Login from './components/Login';
+import EditItem from './components/EditItem';
 
 const AppContent: React.FC = () => {
   const location = useLocation();
@@ -20,6 +21,7 @@ const AppContent: React.FC = () => {
           <Route path="/add-user" element={<AddUser />} />
           <Route path="/view-users" element={<Users />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/edit-item/:id" element={<EditItem />} />
         </Routes>
       </div>
     </>
