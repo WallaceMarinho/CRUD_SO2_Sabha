@@ -7,7 +7,7 @@ import { Item } from './entity/Item';
 export const datasource = new DataSource({
   // tipo de banco e ipV4 público da VM
   type: 'mysql',
-  host: '54.91.6.202',
+  host: 'localhost',
   // porta, usuário, senha, nome do banco de dados e outras configurações
   port: 3306,
   username: 'root',
